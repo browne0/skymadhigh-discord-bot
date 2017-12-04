@@ -1,13 +1,12 @@
 import yt from 'ytdl-core';
 import fs from 'fs';
 
-import YouTubeHandler from '../youtubeHandler';
-import { prefix } from '../../config.json';
-import batchIncludes from '../lib/batchIncludes';
+import YouTubeHandler from '../../youtubeHandler';
+import { prefix } from '../../../config.json';
+import batchIncludes from '../../lib/batchIncludes';
+import queue from '../../data/queue.json';
 
 const youTube = YouTubeHandler.getInstance();
-
-const userData = JSON.parse(fs.readFileSync('./app/songs/playlist.json'));
 
 const addFromUrl = (message, url) => {
   if (url === '' || !url) {
@@ -25,20 +24,17 @@ const addFromUrl = (message, url) => {
       );
     }
 
-    if (!userData[message.author.id]) {
-      userData[message.author.id] = {
-        songQueue: []
-      };
-    }
-
-    userData[message.author.id].songQueue.push({
+    queue.push({
       url,
-      title: info.title
+      title: info.title,
+      time: info.length_seconds,
+      thumbnail: info.thumbnail_url,
+      description: info.description
     });
 
-    const newJSONList = JSON.stringify(userData, null, '\t');
+    const newJSONList = JSON.stringify(queue, null, '\t');
 
-    fs.writeFileSync('./app/songs/playlist.json', newJSONList);
+    fs.writeFileSync('./app/data/queue.json', newJSONList);
 
     message.channel.send(
       `:white_check_mark: Added **${info.title}** to your playlist.`

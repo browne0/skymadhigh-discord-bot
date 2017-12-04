@@ -1,4 +1,4 @@
-import add from './Add';
+import add from './controls/Add';
 
 export default {
   add
