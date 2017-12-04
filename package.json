@@ -4,24 +4,32 @@
   "description": "A discord bot for da boyz on Sky Mad High",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon lib/index.js --exec babel-node --presets es2015,stage-2",
+    "start": "nodemon app/index.js --exec babel-node --presets es2015,stage-2",
     "build": "babel lib -d dist",
     "serve": "node dist/index.js"
   },
-  "keywords": ["discord", "sky mad high", "malik"],
+  "keywords": [
+    "discord",
+    "sky mad high",
+    "malik"
+  ],
   "author": "Malik Browne",
   "license": "MIT",
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
+    "eslint": "4.9.0",
     "eslint-config-airbnb-base": "^12.1.0",
-    "eslint-plugin-import": "^2.8.0",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-import": "2.7.0",
     "nodemon": "^1.12.1"
   },
   "dependencies": {
     "discord.js": "^11.2.1",
-    "eslint-config-airbnb": "^16.1.0",
-    "node-opus": "^0.2.7"
+    "node-opus": "^0.2.7",
+    "performance-now": "^2.1.0",
+    "youtube-node": "^1.3.2",
+    "ytdl-core": "^0.18.3"
   }
 }
