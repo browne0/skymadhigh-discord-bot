@@ -16,7 +16,6 @@
     "max-depth": [1, 3],
     "consistent-return": "off",
     "max-len": [1, 80],
-    "max-statements": [1, 15],
     "new-cap": 1,
     "no-console": "off",
     "linebreak-style": "off",

@@ -34,7 +34,7 @@ client.on('message', async message => {
     .slice(prefix.length)
     .split(' ')[0];
   if (commands.hasOwnProperty(command)) {
-    commands[command](message);
+    commands[command](message, client);
   }
 });
 

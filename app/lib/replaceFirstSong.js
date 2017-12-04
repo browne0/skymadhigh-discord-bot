@@ -5,14 +5,7 @@ import queueList from '../data/queueList.json';
 import prefix from '../../config.json';
 
 export default (message, url) =>
-  new Promise(async resolve => {
-    if (url === '' || !url) {
-      await message.channel.send(
-        `A YouTube video url is required after the command, ${prefix}add`
-      );
-    }
-
-    await message.channel.send('Adding song to playlist.');
+  new Promise(resolve => {
     yt.getInfo(url, {}, (err, info) => {
       if (err) {
         return message.channel.send(
@@ -20,11 +13,7 @@ export default (message, url) =>
         );
       }
 
-      if (!queueList[message.guild.id]) {
-        queueList[message.guild.id] = [];
-      }
-
-      queueList[message.guild.id].push({
+      queueList[message.guild.id].splice(0, 1, {
         url,
         title: info.title,
         time: info.length_seconds,
