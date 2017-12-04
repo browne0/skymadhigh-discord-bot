@@ -13,7 +13,7 @@ export default (message, url) =>
         );
       }
 
-      queueList[message.guild.id].splice(0, 1, {
+      queueList[message.guild.id].splice(1, 0, {
         url,
         title: info.title,
         time: info.length_seconds,

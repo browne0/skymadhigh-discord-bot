@@ -46,7 +46,7 @@ export default async (connection, message, song) => {
   dispatcher.on('end', reason => {
     collector.stop();
     // on end we need to remove that song from the queue, and play the next one.
-    if (reason) {
+    if (reason === 'stop') {
       return message.member.voiceChannel.leave();
     }
     queueList[message.guild.id].shift();

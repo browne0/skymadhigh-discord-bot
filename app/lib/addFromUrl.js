@@ -12,7 +12,6 @@ export default (message, url) =>
       );
     }
 
-    await message.channel.send('Adding song to playlist.');
     yt.getInfo(url, {}, (err, info) => {
       if (err) {
         return message.channel.send(

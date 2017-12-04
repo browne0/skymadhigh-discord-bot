@@ -13,6 +13,7 @@ export default async msg => {
 
   if (utils.batchIncludes(ytStrings, url)) {
     await utils.addFromUrl(msg, url);
+    await msg.reply('Your song has been added.');
   } else {
     await msg.channel.send('You must provide a valid YouTube url.');
   }

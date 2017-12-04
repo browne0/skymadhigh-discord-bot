@@ -34,13 +34,7 @@ export default async msg => {
     const url = msg.content.split(' ')[1];
 
     if (utils.batchIncludes(ytStrings, url)) {
-      if (queueList[msg.guild.id].length >= 1) {
-        // replace the first song with the new song
-        await utils.replaceFirstSong(msg, url);
-      } else {
-        // add one song to the queue
-        await utils.addFromUrl(msg, url);
-      }
+      await utils.addFromUrl(msg, url);
 
       join(msg).then(connection => {
         utils.dispatchSong(connection, msg, queueList[msg.guild.id][0]);
