@@ -2,6 +2,10 @@ Most of this bot is based off the YouTube API.
 
 # Commands
 
+## General
+
+_search_ - Returns the top 5 results from YouTube search.
+
 ## Controls
 
 _play_ - Plays a song or playlist given a YouTube video URL.
@@ -19,6 +23,10 @@ _resume_ - Resumes current song
 example: `!resume`
 
 _add_ - Adds a song to the queue, given a YouTube video url.
+
+example: `!add https://www.youtube.com/watch?v=Ww9S7YWD-Ew`
+
+_stop_ - Stops the Discord bot, and makes the bot leave the channel.
 
 ## Playlists
 
