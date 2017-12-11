@@ -8,7 +8,11 @@
     "build": "babel lib -d dist",
     "serve": "node dist/index.js"
   },
-  "keywords": ["discord", "sky mad high", "malik"],
+  "keywords": [
+    "discord",
+    "sky mad high",
+    "malik"
+  ],
   "author": "Malik Browne",
   "license": "MIT",
   "devDependencies": {
@@ -24,12 +28,15 @@
   "dependencies": {
     "discord.js": "^11.2.1",
     "ffmpeg-binaries": "^3.2.2-3",
+    "lodash": "^4.17.4",
     "node-opus": "^0.2.7",
     "performance-now": "^2.1.0",
     "youtube-node": "^1.3.2",
     "ytdl-core": "^0.18.3"
   },
   "nodemonConfig": {
-    "ignore": ["app/data/*"]
+    "ignore": [
+      "app/data/*"
+    ]
   }
 }

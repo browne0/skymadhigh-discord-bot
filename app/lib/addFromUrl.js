@@ -3,6 +3,7 @@ import yt from 'ytdl-core';
 
 import queueList from '../data/queueList.json';
 import prefix from '../../config.json';
+import { uniqueId } from 'lodash';
 
 export default (message, url) =>
   new Promise(async resolve => {
@@ -24,6 +25,7 @@ export default (message, url) =>
       }
 
       queueList[message.guild.id].push({
+        id: uniqueId(),
         url,
         title: info.title,
         time: info.length_seconds,
