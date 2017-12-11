@@ -49,6 +49,7 @@ _clear_ - Clears all messages for a channel
 
 example: `!clear`
 
+<!---
 ## Playlists
 
 _playlist list_ - Lists all the playlists for your Discord account.
@@ -62,6 +63,7 @@ _playlist play_ - Plays a playlist on your list of playlists.
 ### Adding Playlists
 
 #### YouTube
+--->
 
 <!---
 #### Spotify
