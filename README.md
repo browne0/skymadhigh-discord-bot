@@ -85,7 +85,7 @@ Since this project uses node-opus to handle audio, you will need to install [win
 
 Run this command to install it: `npm install --global windows-build-tools`
 
-Once that's done, clone or download this repo, and run `npm install`.
+Once that's done, clone or download this repo, open the directory with 'package.json' in it and run `npm install`.
 
 ### Starting the bot
 
