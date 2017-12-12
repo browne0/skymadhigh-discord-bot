@@ -75,3 +75,26 @@ the command:
 `!add spotify [spotify url]`
 
 -->
+### Installing the bot
+
+For this project you will need [NodeJS 8.0.0](https://nodejs.org/en/download/) or newer.
+
+Once you have node installed do the following:
+
+Since this project uses node-opus to handle audio, you will need to install [windows-build-tools](https://github.com/felixrieseberg/windows-build-tools)
+
+Run this command to install it: `npm install --global windows-build-tools`
+
+Once that's done, clone or download this repo, and run `npm install`.
+
+### Starting the bot
+
+Now that the bot has all the dependencies installed, you can run:
+
+`npm run start` 
+
+or if you use yarn package manager: 
+
+`yarn start`
+
+If you run into any issues feel free to leave a message on this repo, or email me at malik@malikbrowne.com
