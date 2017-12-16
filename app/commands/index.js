@@ -5,6 +5,8 @@ import join from './bot/Join';
 import setnick from './bot/setNickname';
 import queue from './bot/ViewQueue';
 import clear from './bot/ClearMessages';
+import np from './bot/NowPlaying';
+import history from './bot/History';
 
 export default {
   add,
@@ -12,5 +14,7 @@ export default {
   join,
   setnick,
   queue,
-  clear
+  clear,
+  np,
+  history
 };

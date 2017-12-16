@@ -56,12 +56,13 @@ export default async (connection, message, song) => {
       );
     }
   });
-  dispatcher.on('end', reason => {
+  dispatcher.on('end', async reason => {
     collector.stop();
     // on stop or skip we do different things
     if (reason === 'stop') {
       return message.member.voiceChannel.leave();
     } else if (reason === 'skip') {
+      await utils.addToHistory(message.guild.id);
       const index = queueList[message.guild.id].findIndex(
         item => item.id === song.id
       );
@@ -81,6 +82,7 @@ export default async (connection, message, song) => {
     } else {
       // otherwise a song is ending.
       //  remove the finished song and and go on to the next
+      await utils.addToHistory(message.guild.id);
       queueList[message.guild.id].shift();
       const newJSONList = JSON.stringify(queueList, null, '\t');
 
