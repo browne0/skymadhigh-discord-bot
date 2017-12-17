@@ -10,7 +10,7 @@ export default id =>
       history[id] = [];
     }
 
-    if (history[id].length >= 20) {
+    if (history[id].length >= 5) {
       history[id].pop();
     }
     history[id].unshift(song);

@@ -27,6 +27,7 @@ client.on('guildCreate', guild => {
 
 client.on('message', async message => {
   if (message.author.bot) return;
+
   if (!message.content.startsWith(prefix)) return;
 
   const command = message.content

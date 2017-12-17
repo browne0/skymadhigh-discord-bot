@@ -9,11 +9,30 @@ export default async msg => {
   const historyList = history[msg.guild.id]
     .map(
       (song, index) =>
-        `${index + 1}.\n**Title:** ${song.title}\n**URL:** ${
+        `${index + 1}.\n**Title:** ${song.title}\n**URL:** <${
           song.url
-        }\n**Requested by:** ${song.user}\n\n`
+        }>\n**Requested by:** ${song.user}\n\n`
     )
     .reduce((prev, curr) => `${prev}${curr}`, '');
 
-  await msg.channel.send(`Here's the current song history:\n\n${historyList}`);
+  const shortHistoryList = history[msg.guild.id]
+    .map((song, index) => {
+      if (index <= 4) {
+        return `${index + 1}.\n**Title:** ${song.title}\n**URL:** <${
+          song.url
+        }>\n**Requested by:** ${song.user}\n\n`;
+      }
+      return '';
+    })
+    .reduce((prev, curr) => `${prev}${curr}`, '');
+
+  if (historyList.length > 2000) {
+    await msg.channel.send(
+      `Here are the last five songs:\n\n${shortHistoryList}`
+    );
+  } else {
+    await msg.channel.send(
+      `Here's the current song history:\n\n${historyList}`
+    );
+  }
 };

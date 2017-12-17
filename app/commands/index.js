@@ -7,6 +7,7 @@ import queue from './bot/ViewQueue';
 import clear from './bot/ClearMessages';
 import np from './bot/NowPlaying';
 import history from './bot/History';
+import help from './bot/Help';
 
 export default {
   add,
@@ -16,5 +17,6 @@ export default {
   queue,
   clear,
   np,
-  history
+  history,
+  help
 };
