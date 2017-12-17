@@ -1,7 +1,7 @@
 import fs from 'fs';
 
 import queueList from '../../data/queueList.json';
-import { prefix } from '../../../config.json';
+import { prefix } from '../../../../config.json';
 import join from '../bot/Join';
 import ytStrings from '../../data/youtubeStrings.json';
 import utils from '../../lib';

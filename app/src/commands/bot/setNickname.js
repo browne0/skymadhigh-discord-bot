@@ -1,4 +1,4 @@
-import { prefix } from '../../../config.json';
+import { prefix } from '../../../../config.json';
 
 export default async (msg, client) => {
   if (msg.content === `${prefix}setnick`) return;
@@ -6,6 +6,8 @@ export default async (msg, client) => {
   const username = msg.content.split(' ')[1];
   client.user
     .setUsername(username)
-    .then(user => msg.channel.send(`My name has been changed to ${user.username}.`))
+    .then(user =>
+      msg.channel.send(`My name has been changed to ${user.username}.`)
+    )
     .catch(err => msg.reply(err));
 };

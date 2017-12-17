@@ -1,5 +1,5 @@
 import YouTube from 'youtube-node';
-import { youtubeKey } from '../../keys';
+import { youtubeKey } from '../../../keys';
 
 let singleton;
 

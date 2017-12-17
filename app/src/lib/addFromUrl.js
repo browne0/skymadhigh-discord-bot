@@ -1,9 +1,9 @@
 import fs from 'fs';
 import yt from 'ytdl-core';
+import { uniqueId } from 'lodash';
 
 import queueList from '../data/queueList.json';
-import prefix from '../../config.json';
-import { uniqueId } from 'lodash';
+import prefix from '../../../config.json';
 
 export default (message, url) =>
   new Promise(async resolve => {

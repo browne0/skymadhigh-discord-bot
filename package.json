@@ -25,6 +25,8 @@
     "nodemon": "^1.12.1"
   },
   "dependencies": {
+    "babel-core": "^6.26.0",
+    "babel-polyfill": "^6.26.0",
     "discord.js": "^11.2.1",
     "ffmpeg-binaries": "^3.2.2-3",
     "lodash": "^4.17.4",
