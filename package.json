@@ -7,7 +7,7 @@
     "start":
       "babel-node app/index.js --exec babel-node --presets es2015,stage-2",
     "test": "nodemon app/index.js --exec babel-node --presets es2015,stage-2",
-    "build": "babel lib -d dist",
+    "build": "babel app -d dist",
     "serve": "node dist/index.js"
   },
   "keywords": ["discord", "sky mad high", "malik"],
