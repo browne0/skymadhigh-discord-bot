@@ -1,24 +1,41 @@
-import fs from 'fs';
+'use strict';
 
-import queueList from '../data/queueList.json';
-import history from '../data/history.json';
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
 
-export default (id => new Promise(resolve => {
-    const song = queueList[id][0];
-    if (!history[id]) {
-        history[id] = [];
-    }
+var _fs = require('fs');
 
-    if (history[id].length >= 5) {
-        history[id].pop();
-    }
-    history[id].unshift(song);
+var _fs2 = _interopRequireDefault(_fs);
 
-    const newHistory = history;
+var _queueList = require('../data/queueList.json');
 
-    const newJSONList = JSON.stringify(newHistory, null, '\t');
+var _queueList2 = _interopRequireDefault(_queueList);
 
-    fs.writeFileSync('./app/data/history.json', newJSONList);
+var _history = require('../data/history.json');
 
-    resolve();
-}));
+var _history2 = _interopRequireDefault(_history);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function (id) {
+    return new Promise(function (resolve) {
+        var song = _queueList2.default[id][0];
+        if (!_history2.default[id]) {
+            _history2.default[id] = [];
+        }
+
+        if (_history2.default[id].length >= 5) {
+            _history2.default[id].pop();
+        }
+        _history2.default[id].unshift(song);
+
+        var newHistory = _history2.default;
+
+        var newJSONList = JSON.stringify(newHistory, null, '\t');
+
+        _fs2.default.writeFileSync('./app/data/history.json', newJSONList);
+
+        resolve();
+    });
+};
