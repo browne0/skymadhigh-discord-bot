@@ -1,7 +1,7 @@
 import fs from 'fs';
 
 import queueList from '../../data/queueList.json';
-import { prefix } from '../../../../config.json';
+import { prefix } from '../../../config.json';
 import join from '../bot/Join';
 import ytStrings from '../../data/youtubeStrings.json';
 import utils from '../../lib';
@@ -37,6 +37,13 @@ export default async msg => {
       await msg.reply('You have to join a channel first!');
     }
   } else if (msg.content.startsWith(`${prefix}play `)) {
+    if (!queueList[msg.guild.id]) {
+      queueList[msg.guild.id] = [];
+
+      const newJSONList = JSON.stringify(queueList, null, '\t');
+
+      fs.writeFileSync('./app/data/queueList.json', newJSONList);
+    }
     const secondWord = msg.content.split(' ')[1];
     if (parseInt(secondWord, 10)) {
       const index = Number(secondWord);

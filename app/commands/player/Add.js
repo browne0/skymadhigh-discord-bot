@@ -1,4 +1,4 @@
-import { prefix } from '../../../../config.json';
+import { prefix } from '../../../config.json';
 import utils from '../../lib';
 import ytStrings from '../../data/youtubeStrings.json';
 

@@ -1,4 +1,4 @@
-import { prefix } from '../../../../config.json';
+import { prefix } from '../../../config.json';
 
 export default async (msg, client) => {
   if (msg.content === `${prefix}setnick`) return;
