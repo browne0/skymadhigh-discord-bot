@@ -1,8 +1,8 @@
 import { Client } from 'discord.js';
 
-import { discordToken } from '../keys';
+import { discordToken } from './keys';
 
-import { prefix } from '../config.json';
+import { prefix } from './data/config.json';
 import commands from './commands';
 
 const client = new Client();

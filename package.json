@@ -5,9 +5,11 @@
   "main": "index.js",
   "scripts": {
     "start":
-      "babel-node app/index.js --exec babel-node --presets es2015,stage-2",
-    "test": "nodemon app/index.js --exec babel-node --presets es2015,stage-2",
-    "build": "babel --presets env app -d dist",
+      "babel-node app/index.js --exec babel-node --presets es2015,es2017,stage-2",
+    "test":
+      "nodemon app/index.js --exec babel-node --presets es2015,es2017,stage-2",
+    "build":
+      "cpx app/data/**/*.json dist/data -v && babel --plugins transform-es2015-modules-commonjs --presets es2017 ./app -d dist",
     "serve": "node dist/index.js"
   },
   "keywords": ["discord", "sky mad high", "malik"],
@@ -15,10 +17,11 @@
   "license": "MIT",
   "devDependencies": {
     "babel-cli": "^6.26.0",
-    "babel-plugin-transform-regenerator": "^6.26.0",
-    "babel-preset-env": "^1.6.1",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.0",
     "babel-preset-es2015": "^6.24.1",
+    "babel-preset-es2017": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
+    "cpx": "^1.5.0",
     "eslint": "4.9.0",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-config-prettier": "^2.9.0",

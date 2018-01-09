@@ -1,7 +1,7 @@
 import yt from 'ytdl-core';
 import fs from 'fs';
 
-import { prefix } from '../../config.json';
+import { prefix } from '../data/config.json';
 import queueList from '../data/queueList.json';
 import utils from '../lib';
 
