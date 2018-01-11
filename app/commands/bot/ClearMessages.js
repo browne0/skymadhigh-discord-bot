@@ -7,12 +7,18 @@ export default async msg => {
         msg.channel
           .fetchMessages()
           .then(messages => {
-            msg.channel.bulkDelete(messages);
-            const messagesDeleted = messages.array().length; // number of messages deleted
+            const now = new Date();
+            const messagesToDelete = messages.array().filter(message => {
+              const timestamp = message.createdTimestamp;
+              return daysBetween(new Date(timestamp), now) < 14;
+            });
+            // console.log(messagesToDelete.length);
+            msg.channel.bulkDelete(messagesToDelete);
+            const messagesDeleted = messagesToDelete.length; // number of messages deleted
 
             // Logging the number of messages deleted on both the channel and console.
             msg.channel.send(
-              `Deletion of messages successful. Total messages deleted: ${messagesDeleted}`
+              `Deleted messages under 2 weeks old. Total messages deleted: ${messagesDeleted}`
             );
           })
           .catch(err => {
@@ -27,3 +33,18 @@ export default async msg => {
     }
   }
 };
+
+function daysBetween(date1, date2) {
+  // Get 1 day in milliseconds
+  const oneDay = 1000 * 60 * 60 * 24;
+
+  // Convert both dates to milliseconds
+  const date1ms = date1.getTime();
+  const date2ms = date2.getTime();
+
+  // Calculate the difference in milliseconds
+  const differencems = date2ms - date1ms;
+
+  // Convert back to days and return
+  return Math.round(differencems / oneDay);
+}

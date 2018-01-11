@@ -8,6 +8,7 @@ import clear from './bot/ClearMessages';
 import np from './bot/NowPlaying';
 import history from './bot/History';
 import help from './bot/Help';
+import invite from './bot/Invite';
 
 export default {
   add,
@@ -18,5 +19,6 @@ export default {
   clear,
   np,
   history,
+  invite,
   help
 };

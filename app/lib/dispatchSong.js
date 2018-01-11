@@ -1,14 +1,20 @@
 import yt from 'ytdl-core';
 import fs from 'fs';
+import { RichEmbed } from 'discord.js';
 
 import { prefix } from '../data/config.json';
 import queueList from '../data/queueList.json';
 import utils from '../lib';
 
 export default async (connection, message, song) => {
-  await message.channel.send(
-    `Now Playing: **${song.title}** from **${song.user}**.`
-  );
+  const embed = new RichEmbed()
+    .setColor('ORANGE')
+    .setTitle(':microphone: Now Playing')
+    .setTimestamp(new Date())
+    .setFooter('© Sky Mad High Bot')
+    .setThumbnail(song.thumbnail)
+    .addField(`${song.title}`, `Requested by: **${song.user}**\n${song.url}`);
+  await message.channel.send(embed);
 
   const dispatcher = connection.playStream(yt(song.url, { audioonly: true }), {
     volume: 0.05

@@ -1,3 +1,5 @@
+import { RichEmbed } from 'discord.js';
+
 import history from '../../data/history.json';
 
 export default async msg => {
@@ -6,33 +8,27 @@ export default async msg => {
     return;
   }
 
-  const historyList = history[msg.guild.id]
-    .map(
-      (song, index) =>
-        `${index + 1}.\n**Title:** ${song.title}\n**URL:** <${
-          song.url
-        }>\n**Requested by:** ${song.user}\n\n`
-    )
-    .reduce((prev, curr) => `${prev}${curr}`, '');
+  const historyList = history[msg.guild.id].map((song, index) => [
+    `**${index + 1}.** *${song.title}*`,
+    `**${song.user}**`,
+    song.url
+  ]);
 
-  const shortHistoryList = history[msg.guild.id]
-    .map((song, index) => {
-      if (index <= 4) {
-        return `${index + 1}.\n**Title:** ${song.title}\n**URL:** <${
-          song.url
-        }>\n**Requested by:** ${song.user}\n\n`;
-      }
-      return '';
-    })
-    .reduce((prev, curr) => `${prev}${curr}`, '');
+  const length = historyList.length > 25 ? '25' : historyList.length;
 
-  if (historyList.length > 2000) {
-    await msg.channel.send(
-      `Here are the last five songs:\n\n${shortHistoryList}`
-    );
-  } else {
-    await msg.channel.send(
-      `Here's the current song history:\n\n${historyList}`
-    );
+  const embed = new RichEmbed()
+    .setColor('ORANGE')
+    .setTitle(':books: Song History')
+    .setTimestamp(new Date())
+    .setFooter('© Sky Mad High Bot')
+    .setDescription(`Here are the last ${length} songs that were played!`);
+
+  for (let i = 0; i < historyList.length; i += 1) {
+    if (i === 25) {
+      break;
+    }
+    embed.addField(historyList[i][0], `Requested by: ${historyList[i][1]}`);
   }
+
+  await msg.channel.send(embed);
 };
