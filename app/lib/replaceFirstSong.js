@@ -35,7 +35,7 @@ export default (message, url, addAtFirst = true) =>
 
       const newJSONList = JSON.stringify(queueList, null, '\t');
 
-      fs.writeFileSync('./app/data/queueList.json', newJSONList);
+      fs.writeFileSync(`${__dirname}/../data/queueList.json`, newJSONList);
 
       resolve();
     });

@@ -19,7 +19,7 @@ export default id =>
 
     const newJSONList = JSON.stringify(newHistory, null, '\t');
 
-    fs.writeFileSync('./app/data/history.json', newJSONList);
+    fs.writeFileSync(`${__dirname}/../data/history.json`, newJSONList);
 
     resolve();
   });

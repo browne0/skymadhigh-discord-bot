@@ -31,14 +31,6 @@ export default async msg => {
           `Requested by: ${listOfTitles[i][1]}`
         );
       }
-      // .reduce((prev, curr) => `${prev} \n${curr}`, '');
-      // if (listOfTitles.length > 2000) {
-      //   await msg.channel.reply(
-      //     "The queue is currently so long, Discord won't let me show it!"
-      //   );
-      // } else {
-      // }
-
       await msg.channel.send(embed);
     }
   }

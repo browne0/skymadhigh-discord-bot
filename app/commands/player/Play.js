@@ -13,7 +13,7 @@ export default async msg => {
 
       const newJSONList = JSON.stringify(queueList, null, '\t');
 
-      fs.writeFileSync('./app/data/queueList.json', newJSONList);
+      fs.writeFileSync(`${__dirname}/../../data/queueList.json`, newJSONList);
     }
     if (queueList[msg.guild.id].length === 0) {
       await msg.reply(
@@ -42,7 +42,7 @@ export default async msg => {
 
       const newJSONList = JSON.stringify(queueList, null, '\t');
 
-      fs.writeFileSync('./app/data/queueList.json', newJSONList);
+      fs.writeFileSync(`${__dirname}/../../data/queueList.json`, newJSONList);
     }
     const secondWord = msg.content.split(' ')[1];
     if (parseInt(secondWord, 10)) {
@@ -59,7 +59,10 @@ export default async msg => {
           queueList[msg.guild.id].splice(index - 1, 1);
           const newJSONList = JSON.stringify(queueList, null, '\t');
 
-          fs.writeFileSync('./app/data/queueList.json', newJSONList);
+          fs.writeFileSync(
+            `${__dirname}/../../data/queueList.json`,
+            newJSONList
+          );
         } else {
           const connection = await join(msg);
           utils.dispatchSong(
@@ -74,7 +77,10 @@ export default async msg => {
           queueList[msg.guild.id].splice(index, 1);
           const newJSONList = JSON.stringify(queueList, null, '\t');
 
-          fs.writeFileSync('./app/data/queueList.json', newJSONList);
+          fs.writeFileSync(
+            `${__dirname}/../../data/queueList.json`,
+            newJSONList
+          );
         }
       } else {
         await msg.reply(

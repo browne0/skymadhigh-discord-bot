@@ -76,7 +76,7 @@ export default async (connection, message, song) => {
       queueList[message.guild.id].splice(index, 1);
       const newJSONList = JSON.stringify(queueList, null, '\t');
 
-      fs.writeFileSync('./app/data/queueList.json', newJSONList);
+      fs.writeFileSync(`${__dirname}/../data/queueList.json`, newJSONList);
 
       if (queueList[message.guild.id].length === 0) {
         message.channel.send(
@@ -92,7 +92,7 @@ export default async (connection, message, song) => {
       queueList[message.guild.id].shift();
       const newJSONList = JSON.stringify(queueList, null, '\t');
 
-      fs.writeFileSync('./app/data/queueList.json', newJSONList);
+      fs.writeFileSync(`${__dirname}/../data/queueList.json`, newJSONList);
 
       if (queueList[message.guild.id].length === 0) {
         message.channel.send(

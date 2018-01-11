@@ -40,7 +40,7 @@ export default (message, url) =>
 
         const newJSONList = JSON.stringify(queueList, null, '\t');
 
-        fs.writeFileSync('./app/data/queueList.json', newJSONList);
+        fs.writeFileSync(`${__dirname}/../data/queueList.json`, newJSONList);
 
         resolve('song');
       });
@@ -81,7 +81,10 @@ function queue_playlist(playlistId, message, pageToken = '', url) {
 
               const newJSONList = JSON.stringify(queueList, null, '\t');
 
-              fs.writeFileSync('./app/data/queueList.json', newJSONList);
+              fs.writeFileSync(
+                `${__dirname}/../data/queueList.json`,
+                newJSONList
+              );
             }
           );
         }
