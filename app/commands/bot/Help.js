@@ -18,6 +18,10 @@ export default async msg => {
     .addField(
       '7 - Music Controls',
       'Shows the available commands when listening to music.'
+    )
+    .addField(
+      '8 - Admin Controls',
+      'Shows the available admin commands for this bot.'
     );
   const helpMessage = await msg.channel.send(embed);
 
@@ -28,6 +32,7 @@ export default async msg => {
   await helpMessage.react('5⃣'); // five
   await helpMessage.react('6⃣'); // six
   await helpMessage.react('7⃣'); // seven
+  await helpMessage.react('8️⃣'); // eight
   await helpMessage.react('⛔'); // trash
 
   const collector = await helpMessage.createReactionCollector(
@@ -77,9 +82,10 @@ export default async msg => {
         .setTitle(':headphones: View Queue')
         .addField(
           'Description',
-          'The queue command is used to list the upcoming songs in the queue.'
+          'The queue command is used to list the upcoming songs in the queue. It can also be used to clear the current song queue.'
         )
-        .addField('!queue', 'Lists the current song queue.');
+		.addField('!queue', 'Lists the current song queue.');
+		.addField('!queue clear', 'Clears the current song queue.');
       await helpMessage.edit(newEmbed);
       await r.remove(user);
     } else if (r.emoji.name === '5⃣') {
@@ -125,7 +131,16 @@ export default async msg => {
         );
       await helpMessage.edit(newEmbed);
       await r.remove(user);
-    } else if (r.emoji.name === '⛔') {
+    } else if (r.emoji.name === '8️⃣') {
+		newEmbed
+        .setTitle(':tools: Admin Controls')
+        .setDescription(
+          'There are several different commands that admins can use. Here are the ones that are currently available:'
+        )
+        .addField('!clear or !clear [number]', 'Clears all messages, or certain number of messages up to two weeks old.')
+      await helpMessage.edit(newEmbed);
+      await r.remove(user);
+	} else if (r.emoji.name === '⛔') {
       collector.stop();
       helpMessage.delete();
     }
