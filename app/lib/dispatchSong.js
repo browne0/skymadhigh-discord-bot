@@ -6,7 +6,7 @@ import { prefix } from '../data/config.json';
 import queueList from '../data/queueList.json';
 import utils from '../lib';
 
-export default async (connection, message, song, client) => {
+export default async (connection, message, song) => {
 	const embed = new RichEmbed()
 		.setColor('ORANGE')
 		.setTitle(':microphone: Now Playing')

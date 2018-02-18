@@ -14,7 +14,7 @@
     "eol-last": 2,
     "eqeqeq": [2, "smart"],
     "consistent-return": "off",
-    "max-len": [1, 80],
+    "max-len": "off",
     "new-cap": 1,
     "no-console": "off",
     "linebreak-style": "off",

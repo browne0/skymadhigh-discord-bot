@@ -3,7 +3,7 @@ import { prefix } from '../../data/config.json';
 export default async msg => {
 	if (msg.content.startsWith(`${prefix}clear`)) {
 		if (msg.channel.permissionsFor(msg.author).has('MANAGE_MESSAGES')) {
-			if (msg.channel.type == 'text') {
+			if (msg.channel.type === 'text') {
 				msg.channel
 					.fetchMessages()
 					.then(messages => {
@@ -12,12 +12,12 @@ export default async msg => {
 						let count = messages.array().length;
 
 						if (hasSecond && parseInt(msg.content.split(' ')[1], 10)) {
-							count = msg.content.split(' ')[1];
+							count = msg.content.split(' ')[1]; // eslint-disable-line
 						}
 						const messagesToDelete = messages
 							.array()
 							.slice(0, count)
-							.filter((message, index) => {
+							.filter(message => {
 								const timestamp = message.createdTimestamp;
 								return daysBetween(new Date(timestamp), now) < 14;
 							});
