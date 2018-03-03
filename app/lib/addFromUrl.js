@@ -6,6 +6,7 @@ import request from 'request';
 import queueList from '../data/queueList.json';
 import utils from '../lib';
 import { youtubeKey } from '../keys';
+import { THUMBNAIL_PLACEHOLDER_URL } from '../data/config.json';
 
 export default (message, url) =>
 	new Promise(async resolve => {
@@ -34,7 +35,8 @@ export default (message, url) =>
 						url,
 						title: info.title,
 						time: info.length_seconds,
-						thumbnail: info.thumbnail_url,
+						thumbnail:
+							info.thumbnail_url || THUMBNAIL_PLACEHOLDER_URL,
 						user: message.author.username,
 					});
 				}
@@ -77,7 +79,8 @@ function queue_playlist(playlistId, message, pageToken = '', url) {
 									}`,
 									title: info.title,
 									time: info.length_seconds,
-									thumbnail: info.thumbnail_url,
+									thumbnail:
+										info.thumbnail_url || THUMBNAIL_PLACEHOLDER_URL,
 									user: message.author.username,
 								});
 							}

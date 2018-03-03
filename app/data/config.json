@@ -1,3 +1,4 @@
 {
-  "prefix": "!"
+	"prefix": "!",
+	"THUMBNAIL_PLACEHOLDER_URL": "http://placekitten.com/g/1280/720"
 }
