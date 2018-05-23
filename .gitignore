@@ -8,3 +8,4 @@ yarn.lock
 
 app/data/queueList.json
 app/data/users.json
+app/data/history.json
