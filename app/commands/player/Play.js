@@ -25,9 +25,12 @@ export default async msg => {
 		}
 		if (msg.member.voiceChannel) {
 			if (!msg.guild.voiceConnection) {
-				const connection = await join(msg);
-
-				await utils.dispatchSong(connection, msg, queueList[msg.guild.id][0]);
+				try {
+					const connection = await join(msg);
+					await utils.dispatchSong(connection, msg, queueList[msg.guild.id][0]);
+				} catch (e) {
+					console.log(e);
+				}
 			}
 
 			if (msg.guild.voiceConnection.speaking) {
@@ -64,23 +67,27 @@ export default async msg => {
 						newJSONList
 					);
 				} else {
-					const connection = await join(msg);
-					utils.dispatchSong(
-						connection,
-						msg,
-						queueList[msg.guild.id][index - 1]
-					);
-					await utils.replaceFirstSong(
-						msg,
-						queueList[msg.guild.id][index - 1].url
-					);
-					queueList[msg.guild.id].splice(index, 1);
-					const newJSONList = JSON.stringify(queueList, null, '\t');
+					try {
+						const connection = await join(msg);
+						utils.dispatchSong(
+							connection,
+							msg,
+							queueList[msg.guild.id][index - 1]
+						);
+						await utils.replaceFirstSong(
+							msg,
+							queueList[msg.guild.id][index - 1].url
+						);
+						queueList[msg.guild.id].splice(index, 1);
+						const newJSONList = JSON.stringify(queueList, null, '\t');
 
-					fs.writeFileSync(
-						`${__dirname}/../../data/queueList.json`,
-						newJSONList
-					);
+						fs.writeFileSync(
+							`${__dirname}/../../data/queueList.json`,
+							newJSONList
+						);
+					} catch (e) {
+						console.log(e);
+					}
 				}
 			} else {
 				await msg.reply(
@@ -113,6 +120,8 @@ export default async msg => {
 				}
 				join(msg).then(connection => {
 					utils.dispatchSong(connection, msg, queueList[msg.guild.id][0]);
+				}).catch(e => {
+					console.log(e);
 				});
 			} else {
 				await msg.channel.send('You must provide a valid YouTube url.');
