@@ -11,7 +11,7 @@ export default msg =>
         ":no_entry_sign: I don't have permission to join this channel."
 	  );
 	  return;
-    } else if (!voiceChannel.full) {
+    } else if (voiceChannel.full) {
 	  msg.reply(":no_entry_sign: This voice channel is currently full.");
 	  return;
     }
