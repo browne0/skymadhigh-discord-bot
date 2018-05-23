@@ -1,17 +1,18 @@
-import fs from 'fs';
-import yt from 'ytdl-core';
-import { uniqueId } from 'lodash';
+import fs from "fs";
+import yt from "ytdl-core";
+import { uniqueId } from "lodash";
 
-import queueList from '../data/queueList.json';
-import { THUMBNAIL_PLACEHOLDER_URL } from '../data/config.json';
+import queueList from "../data/queueList.json";
+import { THUMBNAIL_PLACEHOLDER_URL } from "../data/config.json";
 
 export default (message, url, addAtFirst = true) =>
 	new Promise(resolve => {
 		yt.getInfo(url, {}, (err, info) => {
 			if (err) {
-				return message.channel.send(
+				message.channel.send(
 					`:no_entry_sign: Invalid YouTube Link: ${err}`
 				);
+				return;
 			}
 
 			if (info) {
@@ -35,7 +36,7 @@ export default (message, url, addAtFirst = true) =>
 					});
 				}
 
-				const newJSONList = JSON.stringify(queueList, null, '\t');
+				const newJSONList = JSON.stringify(queueList, null, "\t");
 
 				fs.writeFileSync(`${__dirname}/../data/queueList.json`, newJSONList);
 			}

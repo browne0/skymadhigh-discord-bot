@@ -1,7 +1,22 @@
 import { prefix } from '../../data/config.json';
 
+function daysBetween(date1, date2) {
+	// Get 1 day in milliseconds
+	const oneDay = 1000 * 60 * 60 * 24;
+
+	// Convert both dates to milliseconds
+	const date1ms = date1.getTime();
+	const date2ms = date2.getTime();
+
+	// Calculate the difference in milliseconds
+	const differencems = date2ms - date1ms;
+
+	// Convert back to days and return
+	return Math.round(differencems / oneDay);
+}
+
 export default async msg => {
-	if (msg.content.startsWith(`${prefix}clear`)) {
+	if (msg.content.toLowerCase().startsWith(`${prefix}clear`)) {
 		if (msg.channel.permissionsFor(msg.author).has('MANAGE_MESSAGES')) {
 			if (msg.channel.type === 'text') {
 				msg.channel
@@ -47,18 +62,3 @@ export default async msg => {
 		}
 	}
 };
-
-function daysBetween(date1, date2) {
-	// Get 1 day in milliseconds
-	const oneDay = 1000 * 60 * 60 * 24;
-
-	// Convert both dates to milliseconds
-	const date1ms = date1.getTime();
-	const date2ms = date2.getTime();
-
-	// Calculate the difference in milliseconds
-	const differencems = date2ms - date1ms;
-
-	// Convert back to days and return
-	return Math.round(differencems / oneDay);
-}

@@ -1,7 +1,7 @@
-import fs from 'fs';
+import fs from "fs";
 
-import queueList from '../data/queueList.json';
-import history from '../data/history.json';
+import queueList from "../data/queueList.json";
+import history from "../data/history.json";
 
 export default id =>
   new Promise(resolve => {
@@ -17,7 +17,7 @@ export default id =>
 
     const newHistory = history;
 
-    const newJSONList = JSON.stringify(newHistory, null, '\t');
+    const newJSONList = JSON.stringify(newHistory, null, "\t");
 
     fs.writeFileSync(`${__dirname}/../data/history.json`, newJSONList);
 

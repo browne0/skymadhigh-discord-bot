@@ -1,10 +1,10 @@
-import { RichEmbed } from 'discord.js';
+import { RichEmbed } from "discord.js";
 
-import history from '../../data/history.json';
+import history from "../../data/history.json";
 
 export default async msg => {
   if (!history[msg.guild.id] || history[msg.guild.id].length === 0) {
-    await msg.reply('There are currently no songs in the history.');
+    await msg.reply("There are currently no songs in the history.");
     return;
   }
 
@@ -14,13 +14,13 @@ export default async msg => {
     song.url
   ]);
 
-  const length = historyList.length > 25 ? '25' : historyList.length;
+  const length = historyList.length > 25 ? "25" : historyList.length;
 
   const embed = new RichEmbed()
-    .setColor('ORANGE')
-    .setTitle(':books: Song History')
+    .setColor("ORANGE")
+    .setTitle(":books: Song History")
     .setTimestamp(new Date())
-    .setFooter('© Sky Mad High Bot')
+    .setFooter("© Sky Mad High Bot")
     .setDescription(`Here are the last ${length} songs that were played!`);
 
   for (let i = 0; i < historyList.length; i += 1) {
