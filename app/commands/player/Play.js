@@ -5,6 +5,7 @@ import { prefix } from '../../data/config.json';
 import join from '../bot/Join';
 import ytStrings from '../../data/youtubeStrings.json';
 import utils from '../../lib';
+import { queuePlaylist } from '../../lib/addFromUrl';
 
 export default async msg => {
 	if (msg.content.toLowerCase() === `${prefix}play`) {
@@ -100,6 +101,11 @@ export default async msg => {
 			if (utils.batchIncludes(ytStrings, url)) {
 				// check to see if connection already exists
 				if (msg.guild.voiceConnection) {
+					if (url.includes("list")) {
+						const playlistID = utils.getParameterByName("list", url);
+						queuePlaylist(playlistID, msg, "", url);
+						return;
+					}
 					if (queueList[msg.guild.id].length === 0) {
 						await utils.addFromUrl(msg, url);
 						await utils.dispatchSong(

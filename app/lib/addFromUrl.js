@@ -8,7 +8,7 @@ import utils from "../lib";
 import { youtubeKey } from "../keys";
 import { THUMBNAIL_PLACEHOLDER_URL } from "../data/config.json";
 
-function queuePlaylist(playlistId, message, pageToken = "", url) {
+export function queuePlaylist(playlistId, message, pageToken = "", url) {
 	request(
 		`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=${playlistId}&key=${youtubeKey}&pageToken=${pageToken}`,
 		(error, response, body) => {
