@@ -2,17 +2,17 @@ import yt from "ytdl-core";
 import fs from "fs";
 import { RichEmbed } from "discord.js";
 
-import { prefix } from "../data/config.json";
+import { prefix, THUMBNAIL_PLACEHOLDER_URL } from "../data/config.json";
 import queueList from "../data/queueList.json";
 import utils from "../lib";
 
-export default async (connection, message, song) => {
+export default async (connection, message, song = {}) => {
 	const embed = new RichEmbed()
 		.setColor("ORANGE")
 		.setTitle(":microphone: Now Playing")
 		.setTimestamp(new Date())
 		.setFooter("© Sky Mad High Bot")
-		.setThumbnail(song.thumbnail)
+		.setThumbnail(song.thumbnail || THUMBNAIL_PLACEHOLDER_URL)
 		.addField(`${song.title}`, `Requested by: **${song.user}**\n${song.url}`);
 	await message.channel.send(embed);
 
