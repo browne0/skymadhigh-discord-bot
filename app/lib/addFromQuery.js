@@ -1,4 +1,4 @@
-import YouTubeHandler from "../youtubeHandler";
+import YouTubeHandler from "../handlers/youtubeHandler";
 import { addFromUrl } from "../lib";
 
 const youTube = YouTubeHandler.getInstance();
