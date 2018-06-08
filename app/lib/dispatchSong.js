@@ -18,7 +18,7 @@ export default async (connection, message, song = {}) => {
 	await message.channel.send(embed);
 
 	const dispatcher = connection.playStream(yt(song.url, { audioonly: true }), {
-		volume: 0.10,
+		volume: 0.1,
 	});
 
 	const collector = message.channel.createMessageCollector(m => m);
