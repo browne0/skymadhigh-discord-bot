@@ -6,9 +6,10 @@
   "scripts": {
     "start": "babel-node app/index.js --exec babel-node --presets es2015,es2017,stage-2",
     "test": "nodemon app/index.js --exec babel-node --presets es2015,es2017,stage-2",
-    "build": "cpx app/data/**/*.json dist/data -v && babel --plugins transform-es2015-modules-commonjs --presets es2017 ./app -d dist",
-	"serve": "node dist/index.js",
-	"lint": "yarn eslint --fix --ignore-path .eslintignore ."
+    "build:vendor": "cpx app/data/**/*.json dist/data -v && babel --plugins transform-es2015-modules-commonjs --presets es2017 ./app -d dist",
+    "serve": "node dist/index.js",
+	"lint": "yarn eslint --fix --ignore-path .eslintignore .",
+	"lint:prettier": "prettier --write app/**/*.js"
   },
   "keywords": [
     "discord",
@@ -29,7 +30,8 @@
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-import": "2.7.0",
-    "nodemon": "^1.12.1"
+    "nodemon": "^1.12.1",
+    "prettier": "^1.13.4"
   },
   "dependencies": {
     "babel-polyfill": "^6.26.0",
