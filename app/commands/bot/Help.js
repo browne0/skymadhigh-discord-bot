@@ -54,7 +54,8 @@ export default async msg => {
         .setTitle(":headphones: Play")
         .addField(
           "Description",
-          "The play command is used to play a song from the queue. There are three different ways this command can be used:"
+          "The play command is used to play a song from the queue. There are three different ways this command can be used:",
+          true
         )
         .addField(
           "!play",
