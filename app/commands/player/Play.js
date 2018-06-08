@@ -101,9 +101,9 @@ export default async msg => {
 			if (utils.batchIncludes(ytStrings, url)) {
 				// check to see if connection already exists
 				if (msg.guild.voiceConnection) {
-					if (url.includes("list")) {
-						const playlistID = utils.getParameterByName("list", url);
-						queuePlaylist(playlistID, msg, "", url);
+					if (url.includes('list')) {
+						const playlistID = utils.getParameterByName('list', url);
+						queuePlaylist(playlistID, msg, '', url);
 						return;
 					}
 					if (queueList[msg.guild.id].length === 0) {
@@ -124,11 +124,13 @@ export default async msg => {
 				} else {
 					await utils.replaceFirstSong(msg, url);
 				}
-				join(msg).then(connection => {
-					utils.dispatchSong(connection, msg, queueList[msg.guild.id][0]);
-				}).catch(e => {
-					console.log(e);
-				});
+				join(msg)
+					.then(connection => {
+						utils.dispatchSong(connection, msg, queueList[msg.guild.id][0]);
+					})
+					.catch(e => {
+						console.log(e);
+					});
 			} else {
 				await msg.channel.send('You must provide a valid YouTube url.');
 			}

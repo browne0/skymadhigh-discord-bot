@@ -17,7 +17,8 @@ const config = {
     es6: true,
   },
   rules: {
-    "no-tabs": 0,
+	"no-tabs": 0,
+	"linebreak-style": 0,
   },
 };
 
