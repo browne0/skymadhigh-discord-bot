@@ -19,6 +19,7 @@ const config = {
   rules: {
 	"no-tabs": 0,
 	"linebreak-style": 0,
+	"no-unescaped-entities": 0,
   },
 };
 

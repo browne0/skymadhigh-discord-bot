@@ -116,7 +116,9 @@ export default async msg => {
 						return;
 					}
 					await utils.replaceFirstSong(msg, url, false);
-					msg.guild.voiceConnection.dispatcher.end();
+					if (msg.guild.voiceConnection.dispatcher) {
+						msg.guild.voiceConnection.dispatcher.end();
+					}
 					return;
 				}
 				if (queueList[msg.guild.id].length === 0) {

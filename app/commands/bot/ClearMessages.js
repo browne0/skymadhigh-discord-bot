@@ -23,11 +23,22 @@ export default async msg => {
 					.fetchMessages()
 					.then(messages => {
 						const now = new Date();
-						const hasSecond = !!msg.content.startsWith(`${prefix}clear `);
+						const hasSecond = !!msg.content.toLowerCase().startsWith(`${prefix}clear `);
 						let count = messages.array().length;
 
-						if (hasSecond && parseInt(msg.content.split(' ')[1], 10)) {
+						if (hasSecond && Number.isInteger(msg.content.toLowerCase().split(' ')[1])) {
 							count = msg.content.split(' ')[1]; // eslint-disable-line
+						}
+
+						if (hasSecond && !Number.isInteger(msg.content.toLowerCase().split(' ')[1])) {
+							if (msg.content.toLowerCase().split(' ')[1] === 'queue') {
+								msg.reply("The command you're looking for is `!queue clear`.");
+								return;
+							}
+							msg.reply(
+								'Please enter the number of messages you would like to delete.'
+							);
+							return;
 						}
 						const messagesToDelete = messages
 							.array()

@@ -24,19 +24,19 @@ export default async (connection, message, song = {}) => {
 	const collector = message.channel.createMessageCollector(m => m);
 
 	collector.on('collect', async m => {
-		if (m.content.startsWith(`${prefix}pause`)) {
+		if (m.content.toLowerCase().startsWith(`${prefix}pause`)) {
 			await message.channel.send(':pause_button: Paused.');
 			dispatcher.pause();
-		} else if (m.content.startsWith(`${prefix}resume`)) {
+		} else if (m.content.toLowerCase().startsWith(`${prefix}resume`)) {
 			await message.channel.send(':play_pause: Resumed.');
 			dispatcher.resume();
-		} else if (m.content.startsWith(`${prefix}skip`)) {
+		} else if (m.content.toLowerCase().startsWith(`${prefix}skip`)) {
 			await message.channel.send(':arrow_forward: Skipped.');
 			dispatcher.end('skip');
-		} else if (m.content.startsWith(`${prefix}stop`)) {
+		} else if (m.content.toLowerCase().startsWith(`${prefix}stop`)) {
 			await message.channel.send(':octagonal_sign: Music Stopped.');
 			dispatcher.end('stop');
-		} else if (m.content.startsWith(`${prefix}volume`)) {
+		} else if (m.content.toLowerCase().startsWith(`${prefix}volume`)) {
 			if (m.content === `${prefix}volume`) {
 				const currentVol = dispatcher.volume;
 				await message.channel.send(
@@ -53,7 +53,7 @@ export default async (connection, message, song = {}) => {
 				dispatcher.setVolume(Number(vol) / 100);
 				await message.channel.send(':speaker: Volume has now been set ');
 			}
-		} else if (m.content.startsWith(`${prefix}time`)) {
+		} else if (m.content.toLowerCase().startsWith(`${prefix}time`)) {
 			await message.channel.send(
 				`:clock1: Time: ${Math.floor(dispatcher.time / 60000)}:${
 					Math.floor((dispatcher.time % 60000) / 1000) < 10
