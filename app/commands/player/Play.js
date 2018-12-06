@@ -58,7 +58,10 @@ export default async msg => {
 						queueList[msg.guild.id][index - 1].url,
 						false
 					);
-					msg.guild.voiceConnection.dispatcher.end();
+
+					if (msg.guild.voiceConnection.dispatcher) {
+						msg.guild.voiceConnection.dispatcher.end()
+					}
 
 					queueList[msg.guild.id].splice(index - 1, 1);
 					const newJSONList = JSON.stringify(queueList, null, '\t');
